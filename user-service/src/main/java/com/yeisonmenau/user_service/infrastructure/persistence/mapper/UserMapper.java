@@ -2,7 +2,11 @@ package com.yeisonmenau.user_service.infrastructure.persistence.mapper;
 
 import com.yeisonmenau.user_service.domain.model.User;
 import com.yeisonmenau.user_service.infrastructure.persistence.entity.UserEntity;
+import com.yeisonmenau.user_service.infrastructure.web.dto.response.UserResponseDTO;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 @Component
 public class UserMapper {
@@ -19,7 +23,15 @@ public class UserMapper {
                 null,
                 user.getUsername(),
                 user.getEmail(),
-                user.getFechaNacimiento()
+                user.getFechaNacimiento());
+    }
+    public UserResponseDTO toResponseDTO(User user) {
+        return new UserResponseDTO(
+                user.getUserId(),
+                user.getUsername(),
+                user.getEmail(),
+                Period.between(user.getFechaNacimiento(), LocalDate.now()).getYears()
         );
     }
+
 }

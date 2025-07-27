@@ -11,5 +11,5 @@ public class UserResponseDTO {
     private Long userId;
     private String username;
     private String email;
-    private Long edad;
+    private Integer edad;
 }
